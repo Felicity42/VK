@@ -1,0 +1,14 @@
+require_once('src/VK/VK.php');
+require_once('src/VK/VKException.php');
+self::ex();
+public static function ex () {
+        $attach = ORM::for_table('attach')->where('id', 1)->find_one(); // получение данных для авторизации из базы данных таблицы attach
+        $vk_config = array(
+            'app_id'        => $attach->app_id,
+            'api_secret'    => $attach->api_secret,
+            'access_token'  => $attach->access_token
+        );
+
+        $vk = new VK\VK($vk_config['app_id'], $vk_config['api_secret'], $vk_config['access_token']); // создание объекта с последующей авторизацией
+        
+   
